@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+		"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+		"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+
+<tiles-definitions>
+	<definition name=".m_select" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/member/m_select.jsp" />
+	</definition>
+	
+	<definition name=".c_select" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/contents/c_select.jsp" />
+	</definition>
+	
+	<definition name=".re_select" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/contents/re_select.jsp" />
+	</definition>
+	
+	<definition name=".cu_search" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/cust/cu_search.jsp" />
+	</definition>
+	
+	<definition name=".cu_select" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/cust/cu_select.jsp" />
+	</definition>
+	
+	<definition name=".p_insert" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/product/p_insert.jsp" />
+	</definition>
+	
+	<definition name=".p_search" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/product/p_search.jsp" />
+	</definition>
+	
+	<definition name=".p_select" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/product/p_select.jsp" />
+	</definition>
+	
+	<definition name=".e_insert" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/eventlist/e_insert.jsp" />
+	</definition>
+	
+	<definition name=".e_search" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/eventlist/e_search.jsp" />
+	</definition>
+	
+	<definition name=".e_select" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/eventlist/e_select.jsp" />
+	</definition>
+	
+	<definition name=".en_insert" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/entryinfo/en_insert.jsp" />
+	</definition>
+	
+	<definition name=".en_search" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/entryinfo/en_search.jsp" />
+	</definition>
+	
+	<definition name=".en_select" extends=".manager">
+		<put-attribute name="content" value="/WEB-INF/views/entryinfo/en_select.jsp" />
+	</definition>
+	
+	
+</tiles-definitions>

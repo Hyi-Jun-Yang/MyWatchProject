@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="project.com.contents">
+ 	<insert id="c_insert" parameterType="project.com.contents.ContentVO">
+		insert into contents(con_id,con_name,con_writer,con_link,con_rank,con_limit,con_regedate) 
+		values(seq_con_id.nextval,#{con_name},#{con_writer},#{con_link},#{con_rank},#{con_limit},sysdate)
+	</insert>
+  
+  	<update id="c_update" parameterType="project.com.contents.ContentVO">
+  		update CONTENTS 
+  		set con_name=#{con_name},con_writer=#{con_writer},con_link=#{con_link},
+		con_rank=#{con_rank},con_limit=#{con_limit},con_regedate=sysdate where con_id=#{con_id}
+  	</update>
+  
+  	<delete id="c_delete" parameterType="project.com.contents.ContentVO">
+  		delete from contents where CON_ID=#{con_id}
+  	</delete>
+  	
+  	<select id="c_search" resultType="project.com.contents.ContentVO">
+  		select * from contents where CON_ID=#{con_id} order by con_id desc
+  	</select>
+  	
+  	<update id="c_search_countup" parameterType="project.com.contents.ContentVO">
+  		update contents set scount=scount+1 where con_id=#{con_id}
+  	</update>
+  	
+	
+  	<select id="c_select" resultType="project.com.contents.ContentVO">
+  		select * from contents where replylevel=0 order by con_id desc 
+  	</select>
+  	
+  	<select id="c_searchList" resultType="project.com.contents.ContentVO"
+  	parameterType="hashmap">
+  		select * from contents 
+  		<if test="Key=='con_id'">
+  			where con_id=#{value}
+  		</if>
+  		
+  		<if test="Key=='con_name'">
+  			where con_name like #{value}
+  		</if>
+  		
+  		<if test="Key=='con_limit'">
+  			where con_limit=#{value}
+  		</if>
+  		
+  	</select>
+  	  	
+  	<select id="c_select_block" resultType="project.com.contents.ContentVO"	parameterType="hashmap">
+  			select * from(select rownum rnum,con_id,con_name,con_writer,
+			con_link,con_rank,con_limit,con_regedate,scount,reply,replynum,replystep,replylevel 
+			from (select * from contents where replylevel=0 order by con_id desc))
+			where rnum between #{startPage} and #{endPage}
+		   	</select>
+   	
+   	<select id="c_select_block_word" resultType="project.com.contents.ContentVO" parameterType="hashmap">
+  			select * from(select rownum rnum,con_id,con_name,con_writer,
+			con_link,con_rank,con_limit,con_regedate,scount,reply,replynum,replystep,replylevel 
+			from (select * from contents where replylevel=0 order by replynum desc, replystep asc))
+			where rnum between #{startPage} and #{endPage} and con_name like #{word}
+   	</select>
+   	
+   	<select id="re_select" resultType="project.com.contents.ContentVO">
+  		select replynum,replystep,replylevel,replycontext from contents where con_id=#{con_id}
+  	</select>
+  	
+  	<update id="re_update" parameterType="project.com.contents.ContentVO">
+  		update contents set replystep=replystep+1 where replynum=#{replynum} and replystep >#{replystep}
+  	</update>
+   	
+  	<insert id="re_insert" parameterType="project.com.contents.ContentVO">
+  		insert into contents(con_id,con_name,con_writer,con_regedate,
+  		scount,reply,replynum,replystep,replylevel,replycontext,replyprofile) 
+  		values(seq_con_id.nextval,0,#{con_writer},sysdate,
+  		0,#{con_id},#{replynum},#{replystep}+1,#{replylevel}+1,#{replycontext},#{replyprofile})
+  	</insert>
+  	
+  	<select id="replylist" resultType="project.com.contents.ContentVO">
+  		select * from contents where reply=#{con_id} 
+  	</select>
+  	
+  	<select id="replyall" resultType="project.com.contents.ContentVO">
+  		select * from contents where replylevel &gt; 0 order by reply desc
+  	</select>
+  	
+  	
+  	<select id="topten" resultType="project.com.contents.ContentVO">
+  		select rownum rnum,con_id,con_name,con_writer,
+		con_link,con_rank,con_limit,con_regedate,scount,reply,replynum,replystep,replylevel 
+		from (select * from contents where replylevel=0 order by scount desc)
+    	where rownum &lt; 10
+		
+  	</select>
+  	
+  	<select id="mylist" resultType="project.com.contents.ContentVO">
+  		select * from contents where con_writer=#{con_writer} and replylevel=0 order by con_regedate desc
+  	</select>
+				 	
+  	 
+ </mapper> 

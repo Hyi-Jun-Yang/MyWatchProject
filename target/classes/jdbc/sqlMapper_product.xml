@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	
+ <mapper namespace="project.com.product">
+ 	<insert id="p_insert" parameterType="project.com.product.ProductVO">
+		insert into PRODUCT(p_num,p_name,p_count,p_level) 
+		values(seq_p_num.nextval,#{p_name},#{p_count},#{p_level})
+		
+	</insert>
+  
+  	<update id="p_update" parameterType="project.com.product.ProductVO">
+  		update product set p_name=#{p_name},p_count=#{p_count},p_level=#{p_level}
+  		where p_num=#{p_num}
+	
+  	</update>
+  
+  	<delete id="p_delete" parameterType="project.com.product.ProductVO">
+  		delete from PRODUCT where p_num=#{p_num}
+	
+  	</delete>
+  	
+  	<select id="p_search" resultType="project.com.product.ProductVO">
+		select * from product where p_num=#{p_num}
+	
+  	</select>
+  	
+ 	
+  	<select id="p_select" resultType="project.com.product.ProductVO">
+  		select * from product order by p_num desc
+  	</select>
+  	
+  	<select id="p_searchList" resultType="project.com.product.ProductVO"
+  	parameterType="hashmap">
+    	
+  		select * from product 
+  		<if test="searchKey=='p_name'">
+  			where p_name like #{searchWord}
+  		</if>
+  		
+  		<if test="searchKey=='p_num'">
+  			where p_num=#{searchWord}
+  		</if>
+  	</select>
+  	
+  
+
+	
+
+
+  	
+  
+ </mapper> 

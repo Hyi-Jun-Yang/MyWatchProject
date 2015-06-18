@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	
+ <mapper namespace="project.com.cust">
+ 	<insert id="cu_insert" parameterType="project.com.cust.CustVO">
+		insert into cust(c_num,c_name,c_tel) 
+		values(seq_c_num.nextval,#{c_name},#{c_tel})
+	
+	
+	</insert>
+  
+  	<update id="cu_update" parameterType="project.com.cust.CustVO">
+  		update cust set c_name=#{c_name},join_date=sysdate where c_tel=#{c_tel}
+	
+  	
+  	</update>
+  
+  	<delete id="cu_delete" parameterType="project.com.cust.CustVO">
+  		delete from cust where c_tel=#{c_tel}
+  	
+  	</delete>
+  	
+  	<select id="cu_search" resultType="project.com.cust.CustVO">
+		select * from cust where c_tel=#{c_tel}
+	
+  	</select>
+  		
+  	<select id="cu_select" resultType="project.com.cust.CustVO">
+  		select * from cust order by c_num desc
+	
+  	</select>
+  	
+  	<select id="cu_searchList" resultType="project.com.cust.CustVO"
+  	parameterType="hashmap">
+  	
+  		select * from cust 
+  		<if test="searchKey=='c_name'">
+  			where c_name LIKE #{searchWord} order by c_num desc
+  		</if>
+  		
+  		<if test="searchKey=='c_tel'">
+  			where c_tel LIKE #{searchWord} order by c_num desc
+  		</if>
+  	</select>
+  	
+  	<select id="sido_list" resultType="project.com.cust.CustVO">
+  		 select sido from zipcode Group by sido
+  	</select>
+  	
+  	<select id="gugun_list" resultType="project.com.cust.CustVO">
+  		 select gugun from zipcode where sido=#{sido} Group by gugun 
+  	</select>
+  	
+  	<select id="dong_list" resultType="project.com.cust.CustVO">
+  		  select dong from zipcode Group by dong order by dong asc
+  	</select>
+  	
+ 
+  	
+  	<select id="zipcode" resultType="project.com.cust.CustVO">
+  		    select sido,gugun,dong,ri,zipcode from zipcode where dong=#{dong}
+  	</select>
+
+	
+
+
+  	
+  
+ </mapper> 

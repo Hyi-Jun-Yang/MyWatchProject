@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="project.com.member">
+ 	<insert id="m_insert" parameterType="project.com.member.MemberVO">
+		insert into member(m_id,m_name,m_pw,m_email,m_birthday,m_profile)
+		values(#{m_id},#{m_name},#{m_pw},#{m_email},#{m_birthday},#{m_profile})	
+	</insert>
+  
+  	<update id="m_update" parameterType="project.com.member.MemberVO">
+  		update member set m_name=#{m_name},m_pw=#{m_pw},
+  		m_email=#{m_email},m_birthday=#{m_birthday},m_profile=#{m_profile}
+  		where m_id=#{m_id}
+  	</update>
+  
+  	<delete id="m_delete" parameterType="project.com.member.MemberVO">
+  		delete from member where m_id=#{m_id}
+  	</delete>
+  	
+  	<select id="m_search" resultType="project.com.member.MemberVO">
+  		select * from MEMBER where m_id=#{m_id}
+  	</select>
+  	
+	
+  	<select id="m_select" resultType="project.com.member.MemberVO">
+  		select * from MEMBER order by m_id desc
+  	</select>
+  	
+  	<select id="m_searchList" resultType="project.com.member.MemberVO"
+  	parameterType="hashmap">
+  		select * from MEMBER where m_id like #{searchWord}
+  	 	
+  	</select>
+  	
+  	 
+ </mapper> 

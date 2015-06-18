@@ -1,0 +1,177 @@
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 10px 20px 100px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+table{
+	margin: 0 auto;
+    text-align: center;
+    font-family: Arial, sans-serif
+}
+
+tr#view{
+	
+	background: #f0f0f0;
+}
+
+th{
+	background: #c0c0c0;
+	
+}
+
+th#wth{
+	background: #f0f0f0;
+	font-weight:normal;
+}
+
+tr#retr{
+	font-size: 9pt;
+	color:blue;
+	background: #f0f0f0;
+}
+
+wbr{
+	width: 100px;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+    margin: 0 0 0.5em;
+}
+h1 {
+    font-size: 18pt;
+    margin: 0.5em 0 0;
+}
+h2 {
+    font-size: 16pt;
+}
+h3 {
+    font-size: 13pt;
+}
+h4 {
+    font-size: 12pt;
+}
+h5 {
+    font-size: 11pt;
+}
+header {
+    background: #e4e4e4;
+}
+
+nav {
+    background:  #e4e4e4;
+    margin: 0 0 10px;
+    padding: 0;
+    font-size:18pt;
+}
+
+ul {
+	
+    margin: 0;
+    padding: 0 0 0 0.25em;
+    text-indent: 0;
+    list-style: none;
+}
+li {
+    margin: 0;
+    width:175px;
+    padding: 0 0 0.25em;
+    text-indent: 0;
+    font-size: 80%;
+}
+
+nav a {
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #fff;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: #000;
+    text-decoration: none;
+}
+
+div#side_left{
+	margin: -10px 40px;
+	text-align:center;
+	float:left;
+	position: absolute;
+}
+
+div#center{
+	margin: 50px 250px;
+	Width:1300px;
+	text-align:center;
+	position: absolute;
+	
+}
+
+div#wcenter{
+	margin: 50px 250px;
+	text-align:center;
+	position: absolute;
+	
+}
+
+div#lcenter{
+	margin: 50px 250px;
+	Width:750px;
+	text-align:center;
+	position: absolute;
+	
+}
+
+
+div#side_right{
+	margin: 50px 1050px;
+	text-align:center;
+	Width:500px;
+	float:right;
+	position: absolute;
+	font-size:14px;
+	
+}
+
+div#top{
+	margin: 20px 0px;
+	float:left;
+	Width:1250px;
+	text-align:center;
+	position: absolute;
+	
+}
+
+div#wtop{
+	margin: 20px 0px;
+	float:left;
+	Width:1300px;
+	text-align:center;
+	position: absolute;
+	
+}
+
+li#menu{
+	margin: 0;
+    padding: 0 0 0.25em;
+    text-indent: 0;
+    font-size: 18px;
+	display:inline;
+}
+
+
+footer {
+  position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+
+}
+

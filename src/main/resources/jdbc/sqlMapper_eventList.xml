@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	
+ <mapper namespace="project.com.eventlist">
+ 	<insert id="e_insert" parameterType="project.com.eventlist.EventListVO">
+		insert into EVENT_LIST(e_id,e_title,e_content,win_count,e_start,e_end) 
+		values(seq_e_id.nextval,#{e_title},#{e_content},#{win_count},#{e_start},#{e_end})
+			
+		
+	</insert>
+  
+  	<update id="e_update" parameterType="project.com.eventlist.EventListVO">
+		update event_list set e_title=#{e_title},e_content=#{e_content}
+		,e_regdate=sysdate,win_count=#{win_count},e_start=#{e_start}
+		,e_end=#{e_end} where e_id=#{e_id}
+			
+	
+  	</update>
+  
+  	<delete id="e_delete" parameterType="project.com.eventlist.EventListVO">
+		delete from event_list where e_id=#{e_id}
+			
+  	</delete>
+  	
+  	<select id="e_search" resultType="project.com.eventlist.EventListVO">
+		select * from event_list where e_id=#{e_id}
+			
+  	</select>
+  	
+ 	
+  	<select id="e_select" resultType="project.com.eventlist.EventListVO">
+  		select * from EVENT_LIST order by e_id desc
+			
+  	</select>
+  	
+  	<select id="e_searchList" resultType="project.com.eventlist.EventListVO"
+  	parameterType="hashmap">
+    	select * from EVENT_LIST 
+  	
+  		<if test="searchKey=='e_title'">
+  			where e_title like #{searchWord}
+  		</if>
+  		
+  		<if test="searchKey=='e_id'">
+  			 where e_id=#{searchWord}
+  		</if>
+  	</select>
+  	
+  
+
+	
+
+
+  	
+  
+ </mapper> 

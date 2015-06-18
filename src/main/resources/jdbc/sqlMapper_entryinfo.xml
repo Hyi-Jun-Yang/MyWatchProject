@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	
+ <mapper namespace="project.com.entryinfo">
+ 	<insert id="en_insert" parameterType="project.com.entryinfo.EntryInfoVO">
+		insert into ENTRY_INFO(E_NUM,E_OFFICE,E_ID,C_NAME,
+			C_TEL,IS_WIN, WIN_RANK,P_NUM) 
+		values(seq_e_num.nextval,#{e_office},#{e_id},#{c_name},
+		#{c_tel},#{is_win},#{win_rank},#{p_num})	
+	</insert>
+  
+  	<update id="en_update" parameterType="project.com.entryinfo.EntryInfoVO">
+		update ENTRY_INFO 
+		set take_result=#{take_result},take_date=sysdate,take_office=#{take_office} 
+		where e_num=#{e_num}	
+  	</update>
+  
+  	<delete id="en_delete" parameterType="project.com.entryinfo.EntryInfoVO">
+			delete from entry_info where e_num=#{e_num}
+  	</delete>
+  	
+  	<select id="en_search" resultType="project.com.entryinfo.EntryInfoVO">
+			select * from entry_info where e_num=#{e_num}
+  	</select>
+  	
+ 	
+  	<select id="en_select" resultType="project.com.entryinfo.EntryInfoVO">
+			select * from ENTRY_INFO order by e_num desc
+  	</select>
+  	
+  	<select id="en_searchList" resultType="project.com.entryinfo.EntryInfoVO"
+  	parameterType="hashmap">
+  		select * from entry_info  
+  		<if test="searchKey=='c_name'">
+  			where c_name like #{searchWord}
+  		</if>
+  		
+  		<if test="searchKey=='c_tel'">
+  			where c_tel like #{searchWord}
+  		</if>
+  		
+  		<if test="searchKey=='e_num'">
+  			where e_num = #{searchWord}
+  		</if>
+  	</select>
+  	
+  
+
+	
+
+
+  	
+  
+ </mapper> 
